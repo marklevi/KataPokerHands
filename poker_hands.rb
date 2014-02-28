@@ -82,7 +82,7 @@ class Hand
   end
 
   def straight?
-    return true if high_cards.include?(14) && (high_cards & [14,2,3,4,5]).length == 5
+    return true if high_cards.include?(14) && (high_cards - [14,2,3,4,5]).empty?
     (high_cards[0] - high_cards[4] == 4) && high_cards.uniq.length == 5
   end
 
