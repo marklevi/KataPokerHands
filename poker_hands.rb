@@ -50,7 +50,7 @@ class Hand
   attr_reader :cards, :rank
   def initialize hand
     @cards = hand.map { |card| Card.new(card) }
-    @rank = find_rank #can distort multiples
+    @rank = find_rank 
   end
 
   def best_hand
