@@ -87,7 +87,7 @@ class Hand
   end
 
   def flush?
-    @cards.map(&:suit).uniq.length == 1
+    @cards.map(&:suit).uniq.one?
   end
 
   def full_house?
