@@ -5,12 +5,6 @@ class Game
   end
 
   def winner
-    compare_score
-  end
-
-  private
-
-  def compare_score
     if @white_hand.score > @black_hand.score
       "white wins: #{@white_hand.best_hand}"
     elsif @white_hand.score < @black_hand.score
@@ -19,6 +13,8 @@ class Game
       compare_high_cards
     end
   end
+
+  private
 
   def compare_high_cards
     @white_hand.high_cards.each_index do |idx|
@@ -30,7 +26,7 @@ class Game
         next
       end
     end
-    "tie"
+    "Tie"
   end
 end
 
@@ -50,7 +46,7 @@ class Hand
   attr_reader :cards, :rank
   def initialize hand
     @cards = hand.map { |card| Card.new(card) }
-    @rank = find_rank 
+    @rank = find_rank
   end
 
   def best_hand
@@ -63,10 +59,6 @@ class Hand
 
   def high_cards
     @cards.map(&:value).sort.reverse
-  end
-
-  def multiples
-    high_cards.inject(Hash.new(0)) { |h,v| h[v] += 1; h }.select { |k,v| v > 1 }
   end
 
   def pair?
@@ -103,6 +95,10 @@ class Hand
   end
 
   private
+
+  def multiples
+    high_cards.inject(Hash.new(0)) { |h,v| h[v] += 1; h }.select { |k,v| v > 1 }
+  end
 
   def find_rank
     RANKS.detect { |method, rank| send :"#{method}?" } || [:high_card, 0]

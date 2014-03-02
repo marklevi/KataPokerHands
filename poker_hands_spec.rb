@@ -34,7 +34,7 @@ describe Game do
       white_hand =  %w(2D 3H 5C 9S KH)
       black_hand =  %w(2H 3D 5S 9C KD)
       game = Game.new(white_hand, black_hand)
-      expect(game.winner).to eq("tie")
+      expect(game.winner).to eq("Tie")
     end
   end
 end
@@ -65,28 +65,6 @@ describe Hand do
     it "returns the set of cards ordered from highest to lowest in value" do
       expect(hand.high_cards).to eq [13, 9, 5, 3, 2]
       expect(hand2.high_cards).to eq [14, 8, 4, 3, 2]
-    end
-  end
-
-  context "#multiples" do
-    it 'returns card values for a pair' do
-      expect(pair_hand.multiples).to eq({ 13 => 2 })
-    end
-
-    it 'returns card values for two-pair' do
-      expect(two_pair_hand.multiples).to eq({ 13 => 2, 8 => 2})
-    end
-
-    it 'return card values for three of a kind' do
-      expect(three_of_a_kind_hand.multiples).to eq({ 8 => 3 })
-    end
-
-    it 'returns card values for full-house' do
-      expect(full_house_hand.multiples).to eq({ 13 => 2, 8 => 3 })
-    end
-
-    it 'returns card values for four-of-a-kind' do
-      expect(four_of_a_kind_hand.multiples).to eq({ 8 => 4 })
     end
   end
 
